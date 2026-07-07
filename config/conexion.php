@@ -1,5 +1,5 @@
 <?php
-$servidor = "127.0.0.1"; 
+$servidor = "Localhost"; 
 $usuario = "root";
 $password = "";
 $base_datos = "gestionmaestra"; 

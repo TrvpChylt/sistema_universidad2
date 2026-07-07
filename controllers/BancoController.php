@@ -19,7 +19,7 @@ class BancoController {
         $bancos = $this->modelo->obtenerTodos();
 
         // Cargar la vista pasándole los datos
-        require_once __DIR__ . '/../views/bancos/index.php';
+        require_once __DIR__ . '/../views/bancos/Formulario.php';
     }
 
     // Procesar el guardado del formulario
