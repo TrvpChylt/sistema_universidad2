@@ -12,7 +12,7 @@
 
     <div class="navbar bg-base-100 shadow-md px-6">
         <div class="flex-1">
-            <a href="../../index.php" class="btn btn-ghost normal-case text-xl text-primary font-bold">
+            <a href="../index.php" class="btn btn-ghost normal-case text-xl text-primary font-bold">
                 <i class="fa-solid fa-university mr-2"></i> Sistema UNETI
             </a>
         </div>
@@ -37,24 +37,18 @@
                             <label class="label">
                                 <span class="label-text font-semibold">Código del Banco</span>
                             </label>
-                            <input type="text" name="codigo" placeholder="Ej: 0102" class="input input-bordered focus:input-primary w-full" required />
+                            <input type="text" name="numero_banco" placeholder="Ej: 0102" class="input input-bordered focus:input-primary w-full" required />
                         </div>
 
                         <div class="form-control">
                             <label class="label">
                                 <span class="label-text font-semibold">Nombre de la Institución</span>
                             </label>
-                            <input type="text" name="nombre" placeholder="Ej: Banco de Venezuela" class="input input-bordered focus:input-primary w-full" required />
-                        </div>
-
-                        <div class="form-control">
-                            <label class="label">
-                                <span class="label-text font-semibold">Teléfono de Contacto</span>
-                            </label>
-                            <input type="text" name="telefono" placeholder="Ej: 0800-2434000" class="input input-bordered focus:input-primary w-full" />
+                            <input type="text" name="nombre_banco" placeholder="Ej: Banco de Venezuela" class="input input-bordered focus:input-primary w-full" required />
                         </div>
 
                         <div class="form-control pt-4">
+                            <input type="hidden" name="action" value="crear">
                             <button type="submit" class="btn btn-primary w-full text-white">
                                 <i class="fa-solid fa-save mr-2"></i> Guardar Registro
                             </button>
@@ -76,7 +70,6 @@
                                     <th class="bg-base-300 text-base-content">ID</th>
                                     <th class="bg-base-300 text-base-content">Código</th>
                                     <th class="bg-base-300 text-base-content">Nombre</th>
-                                    <th class="bg-base-300 text-base-content">Teléfono</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -85,10 +78,9 @@
                                         <tr>
                                             <th><?php echo htmlspecialchars($banco['id']); ?></th>
                                             <td>
-                                                <span class="badge badge-ghost font-mono text-sm"><?php echo htmlspecialchars($banco['codigo']); ?></span>
+                                                <span class="badge badge-ghost font-mono text-sm"><?php echo htmlspecialchars($banco['numero_banco']); ?></span>
                                             </td>
-                                            <td class="font-semibold"><?php echo htmlspecialchars($banco['nombre']); ?></td>
-                                            <td><?php echo htmlspecialchars($banco['telefono'] ?: 'N/A'); ?></td>
+                                            <td class="font-semibold"><?php echo htmlspecialchars($banco['nombre_banco']); ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php else: ?>

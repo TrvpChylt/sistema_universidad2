@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once __DIR__ . '/../models/Banco.php';
 
 class BancoController {
@@ -24,12 +28,11 @@ class BancoController {
 
     // Procesar el guardado del formulario
     private function guardar() {
-        $codigo = $_POST['codigo'] ?? '';
-        $nombre = $_POST['nombre'] ?? '';
-        $telefono = $_POST['telefono'] ?? '';
+        $codigo = $_POST['numero_banco'] ?? '';
+        $nombre = $_POST['nombre_banco'] ?? '';
 
         if (!empty($codigo) && !empty($nombre)) {
-            $this->modelo->registrar($codigo, $nombre, $telefono);
+            $this->modelo->registrar($codigo, $nombre);
             // Redireccionamos para evitar que se duplique el registro al recargar la página
             header("Location: BancoController.php");
             exit;

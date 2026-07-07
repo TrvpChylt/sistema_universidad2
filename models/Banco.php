@@ -18,10 +18,10 @@ class Banco {
     }
 
     // Método para registrar un nuevo banco (para el formulario)
-    public function registrar($codigo, $nombre, $telefono) {
-        $sql = "INSERT INTO bancos (codigo, nombre, telefono) VALUES (?, ?, ?)";
+    public function registrar($codigo, $nombre) {
+        $sql = "INSERT INTO bancos (numero_banco, nombre_banco, tipo_cuenta, titular) VALUES (?, ?, '', '')";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("sss", $codigo, $nombre, $telefono);
+        $stmt->bind_param("ss", $codigo, $nombre); 
         return $stmt->execute();
     }
 }
