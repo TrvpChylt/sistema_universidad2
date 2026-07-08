@@ -30,9 +30,11 @@ class BancoController {
     private function guardar() {
         $codigo = $_POST['numero_banco'] ?? '';
         $nombre = $_POST['nombre_banco'] ?? '';
+        $tipo_cuenta = $_POST['tipo_cuenta'] ?? '';
+        $titular = $_POST['titular'] ?? '';
 
         if (!empty($codigo) && !empty($nombre)) {
-            $this->modelo->registrar($codigo, $nombre);
+            $this->modelo->registrar($codigo, $nombre, $tipo_cuenta, $titular);
             // Redireccionamos para evitar que se duplique el registro al recargar la página
             header("Location: BancoController.php");
             exit;
