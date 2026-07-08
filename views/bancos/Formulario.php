@@ -18,12 +18,12 @@
     <div class="navbar bg-[#000C40]/80 backdrop-blur-md sticky top-0 z-50 border-b border-[#E5E5BE]/20 px-6 md:px-24 lg:px-48 shadow-[0_10px_30px_rgba(0,12,64,0.5)] transition-all">
         <div class="flex-1">
             <a href="../index.php" class="btn btn-ghost normal-case text-xl text-white font-black tracking-wider flex items-center gap-2 hover:bg-white/10">
-                <i class="fa-solid fa-university text-[#E5E5BE]"></i> Sistema UNETI
+                <i class="fa-solid fa-university text-white"></i> Sistema UNETI
             </a>
         </div>
         <div class="flex-none">
-            <span class="text-xs md:text-sm opacity-90 font-bold bg-[#003973]/60 text-[#E5E5BE] px-4 py-2 rounded-full border border-[#E5E5BE]/30 shadow-md">
-                Entidad: Bancos
+            <span class="text-xs md:text-sm opacity-90 font-bold bg-[#003973]/60 text-white px-4 py-2 rounded-full border border-[#E5E5BE]/30 shadow-md">
+                Programador: Jesus Ramos
             </span>
         </div>
     </div>
@@ -46,28 +46,48 @@
                             <label class="label">
                                 <span class="label-text font-bold !text-white">Código del Banco</span>
                             </label>
-                            <input type="text" name="numero_banco" placeholder="Ej: 0102" class="input input-bordered bg-[#003973]/40 border-[#E5E5BE]/30 focus:border-[#E5E5BE] focus:outline-none text-white w-full rounded-xl placeholder-slate-500 font-semibold" required />
+                            <input 
+                                type="text" 
+                                name="numero_banco" 
+                                placeholder="Ej: 0102" 
+                                class="input input-bordered bg-[#003973]/40 border-[#E5E5BE]/30 focus:border-[#E5E5BE] focus:outline-none !text-neutral-900 focus:text-neutral-900 w-full rounded-xl placeholder:text-slate-500 font-semibold" required   
+                            />
                         </div>
 
                         <div class="form-control">
                             <label class="label">
                                 <span class="label-text font-bold !text-white">Nombre de la Institución</span>
                             </label>
-                            <input type="text" name="nombre_banco" placeholder="Ej: Banco de Venezuela" class="input input-bordered bg-[#003973]/40 border-[#E5E5BE]/30 focus:border-[#E5E5BE] focus:outline-none text-white w-full rounded-xl placeholder-slate-500 font-semibold" required />
+                            <input 
+                                type="text" 
+                                name="nombre_banco" 
+                                placeholder="Ej: Banco de Venezuela" 
+                                class="input input-bordered bg-[#003973]/40 border-[#E5E5BE]/30 focus:border-[#E5E5BE] focus:outline-none !text-neutral-900 focus:text-neutral-900 w-full rounded-xl placeholder:text-slate-500 font-semibold" required  
+                            />
                         </div>
 
                         <div class="form-control">
                             <label class="label">
                                 <span class="label-text font-bold !text-white">Tipo de Cuenta</span>
                             </label>
-                            <input type="text" name="tipo_cuenta" placeholder="Ej: Cuenta Corriente" class="input input-bordered bg-[#003973]/40 border-[#E5E5BE]/30 focus:border-[#E5E5BE] focus:outline-none text-white w-full rounded-xl placeholder-slate-500 font-semibold" required />
+                            <input 
+                                type="text" 
+                                name="tipo_cuenta" 
+                                placeholder="Ej: Cuenta Corriente" 
+                                class="input input-bordered bg-[#003973]/40 border-[#E5E5BE]/30 focus:border-[#E5E5BE] focus:outline-none !text-neutral-900 focus:text-neutral-900 w-full rounded-xl placeholder:text-slate-500 font-semibold" required 
+                            />
                         </div>
 
                         <div class="form-control">
                             <label class="label">
                                 <span class="label-text font-bold !text-white">Titular de la cuenta</span>
                             </label>
-                            <input type="text" name="titular_cuenta" placeholder="Ej: Juan Pérez" class="input input-bordered bg-[#003973]/40 border-[#E5E5BE]/30 focus:border-[#E5E5BE] focus:outline-none text-white w-full rounded-xl placeholder-slate-500 font-semibold" required />
+                            <input 
+                                type="text" 
+                                name="titular" 
+                                placeholder="Ej: Juan Pérez" 
+                                class="input input-bordered bg-[#003973]/40 border-[#E5E5BE]/30 focus:border-[#E5E5BE] focus:outline-none !text-neutral-900 focus:text-neutral-900 w-full rounded-xl placeholder:text-slate-500 font-semibold"
+                            />
                         </div>
 
                         <div class="form-control pt-4">
@@ -83,7 +103,7 @@
             <div class="lg:col-span-2 card bg-[#000C40]/90 backdrop-blur-lg rounded-3xl relative overflow-hidden border border-[#E5E5BE]/20 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.8),0_0_50px_rgba(0,57,115,0.3)] p-2">
                 <div class="card-body">
                     <h2 class="card-title text-white font-black text-xl border-b border-[#E5E5BE]/20 pb-3 mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-table text-[#E5E5BE]"></i> Bancos Registrados
+                        <i class="fa-solid fa-table !text-white"></i> Bancos Registrados
                     </h2>
 
                     <div class="overflow-x-auto w-full rounded-2xl border border-[#E5E5BE]/10 shadow-inner">
@@ -91,11 +111,11 @@
                             <!-- Encabezado de la Tabla -->
                             <thead>
                                 <tr>
-                                    <th class="bg-[#003973] text-[#E5E5BE] font-extrabold text-sm border-b border-[#E5E5BE]/10 py-4">ID</th>
-                                    <th class="bg-[#003973] text-[#E5E5BE] font-extrabold text-sm border-b border-[#E5E5BE]/10 py-4">Código</th>
-                                    <th class="bg-[#003973] text-[#E5E5BE] font-extrabold text-sm border-b border-[#E5E5BE]/10 py-4">Nombre</th>
-                                    <th class="bg-[#003973] text-[#E5E5BE] font-extrabold text-sm border-b border-[#E5E5BE]/10 py-4">Tipo de Cuenta</th>
-                                    <th class="bg-[#003973] text-[#E5E5BE] font-extrabold text-sm border-b border-[#E5E5BE]/10 py-4">Titular de la Cuenta</th>
+                                    <th class="bg-[#003973] !text-white font-extrabold text-sm border-b border-[#E5E5BE]/10 py-4">ID</th>
+                                    <th class="bg-[#003973] !text-white font-extrabold text-sm border-b border-[#E5E5BE]/10 py-4">Código</th>
+                                    <th class="bg-[#003973] !text-white font-extrabold text-sm border-b border-[#E5E5BE]/10 py-4">Nombre</th>
+                                    <th class="bg-[#003973] !text-white font-extrabold text-sm border-b border-[#E5E5BE]/10 py-4">Tipo de Cuenta</th>
+                                    <th class="bg-[#003973] !text-white font-extrabold text-sm border-b border-[#E5E5BE]/10 py-4">Titular de la Cuenta</th>
                                 </tr>
                             </thead>
                             <!-- Cuerpo de la Tabla -->
@@ -117,7 +137,7 @@
                                 <?php else: ?>
                                     <tr>
                                         <td colspan="5" class="text-center py-12 text-slate-400">
-                                            <i class="fa-solid fa-folder-open text-5xl text-[#003973] mb-3 block animate-bounce"></i>
+                                            <i class="fa-solid fa-folder-open text-5xl text-[#003973] mb-3 block"></i>
                                             <span class="font-semibold block">No hay bancos registrados en este momento.</span>
                                         </td>
                                     </tr>
