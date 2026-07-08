@@ -68,7 +68,7 @@
 
                 <!-- Botón Cremoso más imponente -->
                 <div class="flex justify-center">
-                    <a href="controllers/BancoController.php" class="btn border-0 bg-gradient-to-r from-[#E5E5BE] to-[#c7c79e] hover:from-[#c7c79e] hover:to-[#E5E5BE] btn-block sm:btn-wide py-4 h-auto text-[#000C40] font-black text-lg tracking-wide rounded-2xl transition-all duration-300 normal-case group shadow-[0_20px_40px_rgba(229,229,190,0.25)] hover:shadow-[0_25px_50px_rgba(229,229,190,0.45)] hover:scale-[1.03]">
+                    <a href="views/bancos/Formulario.php" class="btn border-0 bg-gradient-to-r from-[#E5E5BE] to-[#c7c79e] hover:from-[#c7c79e] hover:to-[#E5E5BE] btn-block sm:btn-wide py-4 h-auto text-[#000C40] font-black text-lg tracking-wide rounded-2xl transition-all duration-300 normal-case group shadow-[0_20px_40px_rgba(229,229,190,0.25)] hover:shadow-[0_25px_50px_rgba(229,229,190,0.45)] hover:scale-[1.03]">
                         Acceder al Sistema
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1.5 stroke-[#000C40]">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />

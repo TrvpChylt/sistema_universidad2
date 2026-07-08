@@ -1,8 +1,8 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+ini_set('display_errors', 0); 
 error_reporting(E_ALL);
 
+header('Content-Type: application/json');
 require_once __DIR__ . '/../models/Banco.php';
 
 class BancoController {
@@ -12,36 +12,89 @@ class BancoController {
         $this->modelo = new Banco();
     }
 
-    // Manejar la petición principal
-    public function index() {
-        // Si viene una petición POST, significa que se envió el formulario
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'crear') {
-            $this->guardar();
+    public function procesarPeticion() {
+        $metodo = $_SERVER['REQUEST_METHOD'];
+
+        if ($metodo === 'POST') {
+            $jsonInput = file_get_contents('php://input');
+            $datos = json_decode($jsonInput, true);
+            $accion = $datos['action'] ?? '';
+
+            if ($accion === 'crear') {
+                $this->guardar($datos);
+            } elseif ($accion === 'eliminar') {
+                $this->borrar($datos);
+            } elseif ($accion === 'actualizar') {
+                $this->modificar($datos);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Acción no permitida']);
+            }
+        } elseif ($metodo === 'GET') {
+            $this->listar();
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Método no soportado']);
         }
-
-        // Obtener los datos para la tabla
-        $bancos = $this->modelo->obtenerTodos();
-
-        // Cargar la vista pasándole los datos
-        require_once __DIR__ . '/../views/bancos/Formulario.php';
     }
 
-    // Procesar el guardado del formulario
-    private function guardar() {
-        $codigo = $_POST['numero_banco'] ?? '';
-        $nombre = $_POST['nombre_banco'] ?? '';
-        $tipo_cuenta = $_POST['tipo_cuenta'] ?? '';
-        $titular = $_POST['titular'] ?? '';
+    private function guardar($datos) {
+        $codigo = $datos['numero_banco'] ?? '';
+        $nombre = $datos['nombre_banco'] ?? '';
+        $tipo_cuenta = $datos['tipo_cuenta'] ?? '';
+        $titular = $datos['titular'] ?? '';
 
-        if (!empty($codigo) && !empty($nombre)) {
-            $this->modelo->registrar($codigo, $nombre, $tipo_cuenta, $titular);
-            // Redireccionamos para evitar que se duplique el registro al recargar la página
-            header("Location: BancoController.php");
-            exit;
+        if (!empty($codigo) && !empty($nombre) && !empty($tipo_cuenta) && !empty($titular)) {
+            $resultado = $this->modelo->registrar($codigo, $nombre, $tipo_cuenta, $titular);
+            if ($resultado) {
+                echo json_encode(['status' => 'success', 'message' => 'Banco registrado exitosamente']);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Error en la base de datos']);
+            }
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Campos vacíos']);
         }
+        exit;
+    }
+
+    private function borrar($datos) {
+        $id = $datos['id'] ?? '';
+        if (!empty($id)) {
+            $resultado = $this->modelo->eliminar($id);
+            if ($resultado) {
+                echo json_encode(['status' => 'success', 'message' => 'Banco eliminado correctamente']);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'No se pudo eliminar']);
+            }
+        }
+        exit;
+    }
+
+    private function modificar($datos) {
+        $id = $datos['id'] ?? '';
+        $codigo = $datos['numero_banco'] ?? ''; 
+        $nombre = $datos['nombre_banco'] ?? '';
+        $tipo_cuenta = $datos['tipo_cuenta'] ?? '';
+        $titular = $datos['titular'] ?? '';
+
+        if (!empty($id) && !empty($codigo) && !empty($nombre) && !empty($tipo_cuenta) && !empty($titular)) {
+            $resultado = $this->modelo->actualizar($id, $codigo, $nombre, $tipo_cuenta, $titular);
+            if ($resultado) {
+                echo json_encode(['status' => 'success', 'message' => 'Banco actualizado de forma exitosa']);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'No se realizaron cambios en el registro o error en SQL']);
+            }
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Faltan campos obligatorios para actualizar']);
+        }
+        exit;
+    }
+
+    private function listar() {
+        $bancos = $this->modelo->obtenerTodos();
+        echo json_encode($bancos);
+        exit;
     }
 }
 
-// Inicializar el controlador inmediatamente al invocar el archivo
+// 🔥 ESTO HACÍA FALTA ABAJO DEL TODO PARA QUE RESPONDA LA PETICIÓN:
 $controller = new BancoController();
-$controller->index();
+$controller->procesarPeticion();
