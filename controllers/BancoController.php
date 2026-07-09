@@ -95,6 +95,5 @@ class BancoController {
     }
 }
 
-// 🔥 ESTO HACÍA FALTA ABAJO DEL TODO PARA QUE RESPONDA LA PETICIÓN:
 $controller = new BancoController();
 $controller->procesarPeticion();

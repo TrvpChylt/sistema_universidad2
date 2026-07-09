@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const URL_CONTROLADOR = "../../controllers/BancoController.php";
 
-    // 1. FUNCIÓN PARA LISTAR LOS BANCOS (GET)
     const listarBancos = async () => {
         try {
             const respuesta = await fetch(URL_CONTROLADOR);
@@ -64,9 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // 2. ENLAZAR CLICKS DE EDICIÓN Y ELIMINACIÓN
     const asignarEventosBotones = () => {
-        // Manejo de eliminación física
         document.querySelectorAll(".btn-eliminar").forEach(boton => {
             boton.addEventListener("click", async () => {
                 const id = boton.getAttribute("data-id");
@@ -90,7 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        // Manejo de la Edición (Cargar datos en el Modal Flotante)
         document.querySelectorAll(".btn-editar").forEach(boton => {
             boton.addEventListener("click", () => {
                 document.getElementById("edit_id").value = boton.getAttribute("data-id");
@@ -99,13 +95,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById("edit_tipo_cuenta").value = boton.getAttribute("data-tipo");
                 document.getElementById("edit_titular").value = boton.getAttribute("data-titular");
 
-                // Mostrar modal usando el método oficial de DaisyUI/HTML5
                 modalEditar.showModal();
             });
         });
     };
 
-    // 3. EVENTO SUBMIT DEL FORMULARIO PRINCIPAL (CREAR)
     if (formBanco) {
         formBanco.addEventListener("submit", async (e) => {
             e.preventDefault();
@@ -129,20 +123,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 const resultado = await respuesta.json();
 
                 if (resultado.status === "success") {
-                    alert("🎉 " + resultado.message);
+                    alert(resultado.message);
                     formBanco.reset();
                     listarBancos();
                 } else {
-                    alert("❌ Error: " + resultado.message);
+                    alert("Error: " + resultado.message);
                 }
             } catch (error) {
                 console.error(error);
-                alert("❌ Ocurrió un error al procesar el registro.");
+                alert("Ocurrió un error al procesar el registro.");
             }
         });
     }
 
-    // 4. EVENTO SUBMIT DEL FORMULARIO DEL MODAL (ACTUALIZAR)
     if (formEditarBanco) {
         formEditarBanco.addEventListener("submit", async (e) => {
             e.preventDefault();
@@ -167,19 +160,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 const resultado = await respuesta.json();
 
                 if (resultado.status === "success") {
-                    alert("🎉 " + resultado.message);
-                    modalEditar.close(); // Cerrar ventana emergente
-                    listarBancos();     // Recargar asíncronamente
+                    alert(resultado.message);
+                    modalEditar.close(); 
+                    listarBancos();    
                 } else {
-                    alert("❌ Error: " + resultado.message);
+                    alert("Error: " + resultado.message);
                 }
             } catch (error) {
                 console.error(error);
-                alert("❌ Ocurrió un error al intentar actualizar.");
+                alert("Ocurrió un error al intentar actualizar.");
             }
         });
     }
 
-    // Carga inicial al entrar
     listarBancos();
 });

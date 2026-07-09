@@ -128,7 +128,7 @@
     </dialog>
 
     <footer class="footer footer-center p-4 bg-[#000C40]/90 border-t border-[#E5E5BE]/10 text-slate-400 text-xs font-semibold">
-        <div><p>© 2026 - Evaluación de la Sesión Didáctica 2</p></div>
+        <div><p>2026 - Evaluación de la Sesión Didáctica 2</p></div>
     </footer>
 
     <script src="../../src/main.js"></script>
